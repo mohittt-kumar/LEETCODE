@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    static const int N = 55;
+    int rowSum[N][N], colSum[N][N], diag[N][N], anti[N][N];
+    int r, c;
+
+    bool isMagic(int k) {
+        for (int i = 0; i + k <= r; i++) {
+            for (int j = 0; j + k <= c; j++) {
+                int d1 = diag[i + k][j + k] - diag[i][j];
+                int d2 = anti[i + k][j] - anti[i][j + k];
+                if (d1 != d2) continue;
+
+                bool ok = true;
+                for (int x = 0; x < k && ok; x++) {
+                    int rs = rowSum[i + x + 1][j + k] - rowSum[i + x + 1][j];
+                    int cs = colSum[i + k][j + x + 1] - colSum[i][j + x + 1];
+                    if (rs != d1 || cs != d1)
+                        ok = false;
+                }
+                if (ok) return true;
+            }
+        }
+        return false;
+    }
+
+    int largestMagicSquare(vector<vector<int>>& grid) {
+        r = grid.size();
+        c = grid[0].size();
+
+        memset(rowSum, 0, sizeof(rowSum));
+        memset(colSum, 0, sizeof(colSum));
+        memset(diag, 0, sizeof(diag));
+        memset(anti, 0, sizeof(anti));
+
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                int x = grid[i][j];
+                rowSum[i + 1][j + 1] = rowSum[i + 1][j] + x;
+                colSum[i + 1][j + 1] = colSum[i][j + 1] + x;
+                diag[i + 1][j + 1] = diag[i][j] + x;
+                anti[i + 1][j] = anti[i][j + 1] + x;
+            }
+        }
+
+        for (int k = min(r, c); k >= 2; k--) {
+            if (isMagic(k)) return k;
+        }
+        return 1;
+    }
+};
