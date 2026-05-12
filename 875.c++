@@ -7,13 +7,11 @@ public:
         for (int i = 0; i < n; i++) {
             end = max(end, piles[i]);
         }
-
-        int start = 1;   
+        int start = 1,mid;   
         int ans = end;
 
         while (start <= end) {
-            int mid = start + (end - start) / 2;
-
+            mid = start + (end - start) / 2;
             long long total_time = 0;
 
             for (int i = 0; i < n; i++) {
