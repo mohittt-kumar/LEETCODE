@@ -6,7 +6,6 @@ public:
         int forward=0;
         for(int i=0;i<nums.size()-1;i++){
             forward=max(forward,i+nums[i]);
-
             if(i==currend){
                 jump++;
                 currend=forward;
