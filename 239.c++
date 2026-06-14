@@ -9,8 +9,7 @@ public:
             }else{
                 while(!d.empty()&&nums[i]>nums[d.back()]){
                     d.pop_back();
-                    d.push_back(i);
-                }
+                }d.push_back(i);
             }
         }
         for(int i=k-1;i<nums.size();i++){
