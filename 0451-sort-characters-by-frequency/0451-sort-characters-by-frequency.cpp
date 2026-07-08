@@ -1,27 +1,24 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        vector<int>ans(256,0); 
+        vector<int>ans(256,0);
         for(int i=0;i<s.size();i++){
             ans[s[i]]++;
-        }   
-        string res="";
+        }
+        string s1="";
         while(true){
-            char ch;
             int mx=0;
+            char ch;
             for(int i=0;i<256;i++){
-                if(ans[i]>mx){
+                if(mx<ans[i]){
                     mx=ans[i];
                     ch=i;
                 }
-            }if(mx==0){
-                break;
             }
+            if(mx==0)break;
             while(mx--){
-               res+=ch;
-            }
-            ans[ch]=0;
-        }
-        return res;
+                s1+=ch;
+            }ans[ch]=0;
+        }return s1;
     }
 };
