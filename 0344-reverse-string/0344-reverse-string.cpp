@@ -1,15 +1,16 @@
 class Solution {
 public:
-    void solve(vector<char>&s , int left,int right){
-        if(left>=right){
+    void reverseString(vector<char>& s) {
+        if(s.size()<=0){
             return;
         }
 
-        swap(s[left],s[right]);
-
-        solve(s,left+1,right-1);
-    }
-    void reverseString(vector<char>& s) {
-        solve(s,0,s.size()-1);
+        int i=0;
+        int j=s.size()-1;
+        while(i<=j){
+            swap(s[i],s[j]);
+            i++;
+            j--;
+        }
     }
 };
