@@ -10,13 +10,15 @@ public:
         else return 1000;
     }
     int romanToInt(string s) {
+        int i=0;
         int sum=0;
-        for(int i=0;i<s.size()-1;i++){
+        while(i<s.size()-1){
             if(num(s[i])<num(s[i+1])){
                 sum-=num(s[i]);
             }else{
                 sum+=num(s[i]);
             }
+            i++;
         }return sum+num(s[s.size()-1]);
     }
 };
