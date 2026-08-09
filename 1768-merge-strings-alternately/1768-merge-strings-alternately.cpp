@@ -4,22 +4,16 @@ public:
         int i=0,j=0;
         string ans;
         while(i<word1.size() && j<word2.size()){
-            ans+=word1[i];
-            i++;
-            if(i>j){
-                ans+=word2[j];
-                j++;
-            }
+            ans+=word1[i++];
+            ans+=word2[j++];
         }
 
         while(i<word1.size()){
-            ans+=word1[i];
-            i++;
+            ans+=word1[i++];
         }
 
         while(j<word2.size()){
-            ans+=word2[j];
-            j++;
+            ans+=word2[j++];
         }
         return ans;
     }
